@@ -60,6 +60,7 @@ main * + * {
 .middle-section {
   font-size: 14px;
   padding-bottom: 4rem;
+  position: relative;
 }
 
 .progress {
@@ -107,17 +108,20 @@ h2 {
 }
 
 .floating-msg {
-  padding: 0.5rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  margin: 0;
+  z-index: 10;
+  background: #fff;
+  color: #22223a;
+  padding: 1rem 2.5rem;
+  border-radius: 15px 15px 15px 15px;
+  font-weight: 700;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  transform: translate(0, -50%);
-  margin: auto;
-  max-width: 60%;
-  width: 178px;
-  height: 60px;
-  background-color: var(--Blue-200);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .val {
@@ -165,5 +169,45 @@ h2 {
   }
   main * + * {
     margin-top: 0.5rem;
+  }
+
+  .floating-msg {
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    transform: translate(-20%, -50%);
+    border-radius: 15px 15px 15px 15px;
+    padding: 1rem 2.5rem;
+  }
+  .floating-msg::after {
+    content: "";
+    position: absolute;
+    right: 32px;
+    bottom: -16px;
+    width: 32px;
+    height: 16px;
+    background: #fff;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    z-index: 1;
+  }
+  .floating-msg .val {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #22223a;
+    margin-right: 0.5rem;
+  }
+  .floating-msg .txt {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #b0b0c3;
+    letter-spacing: 2px;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 899px) {
+  .floating-msg::after {
+    display: none;
   }
 }
